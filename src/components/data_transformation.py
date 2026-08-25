@@ -26,6 +26,7 @@ logging.info("Test data reading completed")
 print(train_data.shape,test_data.shape)
 logging.info("Printing train and test shapes") """
 
+##Configuration des elements de transformation des données
 @dataclass
 class DataTransformationConfig:
     preprocessor_ob_file_path=os.path.join('artifacts','preprocessor.pkl')

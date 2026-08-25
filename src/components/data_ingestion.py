@@ -11,7 +11,7 @@ from src.components.data_transformation import DataTransformation
 from src.components.model_trainer import ModelTrainerConfig
 from src.components.model_trainer import ModelTrainer
 
-
+#Configuration de l'ingestion des données
 @dataclass
 class DataIngestionConfig:
     train_data_path: str=os.path.join('artifacts','train.csv')
@@ -55,6 +55,7 @@ if __name__=="__main__":
     train_arr,test_arr,_=data_transformation.initiate_data_transformation(train_data,test_data)
 
     model_trainer = ModelTrainer()
-    print(model_trainer.initiate_model_trainer(train_arr,test_arr))
+    score_best,best_model_name=model_trainer.initiate_model_trainer(train_arr,test_arr)
+    print("Best score ",score_best," Best model name ",best_model_name)
 
 

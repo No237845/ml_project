@@ -10,7 +10,8 @@ from sklearn.metrics import r2_score
 from sklearn.neighbors import KNeighborsRegressor
 from sklearn.tree import DecisionTreeRegressor
 from xgboost import XGBRegressor
-from sklearn.ensemble import (RandomForestRegressor,AdaBoostRegressor)
+from sklearn.ensemble import (RandomForestRegressor,AdaBoostRegressor,GradientBoostingRegressor)
+from dataclasses import dataclass
 
 
 from src.exception import CustomException
@@ -42,8 +43,8 @@ class ModelTrainer:
             models = {
                 "Random Forest" : RandomForestRegressor(),
                 "Decision Tree" : DecisionTreeRegressor(),
-                "Gradient Boosting" : GradientBoosting(),
-                "Linear Regression" : LinearRegressor(),
+                "Gradient Boosting" : GradientBoostingRegressor(),
+                "Linear Regression" : LinearRegression(),
                 "K-Neighbors Regression" : KNeighborsRegressor(),
                 "XGBRegression" : XGBRegressor(),
                 "CatBoosting Regressor" : CatBoostRegressor(),
@@ -75,7 +76,7 @@ class ModelTrainer:
             predicted = best_model.predict(X_test)
             r2_square = r2_score(y_test,predicted)
 
-            return r2_square
+            return (r2_square,best_model_name)
 
         except Exception as e:
             raise CustomException(e,sys)
